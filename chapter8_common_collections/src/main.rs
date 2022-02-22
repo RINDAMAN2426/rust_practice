@@ -1,13 +1,14 @@
+use std::collections::HashMap;
+
 fn main() {
-    enum SpreadsheetCall {
-        Int(i32),
-        Float(f64),
-        Text(String)
+    let text = "hello world wonderful world";
+
+    let mut map = HashMap::new();
+
+    for word in text.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
     }
 
-    let row = vec![
-        SpreadsheetCall::Int(3),
-        SpreadsheetCall::Text(String::from("blue")),
-        SpreadsheetCall::Float(10.12)
-    ];
+    println!("{:?}", map); // {"hello": 1, "world": 2, "wonderful": 1}
 }
